@@ -1,0 +1,97 @@
+{
+  "id": null,
+  "uid": "sensordash",
+  "title": "Sensor Dashboard",
+  "timezone": "browser",
+  "schemaVersion": 37,
+  "version": 1,
+  "refresh": "1s",
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "table",
+      "title": "Latest Raw Data",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "rawds"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "url": "/api/raw",
+          "data": "",
+          "format": "table",
+          "columns": [
+            { "selector": "sensor_id", "text": "Sensor ID", "type": "string" },
+            { "selector": "temperature", "text": "Temperature", "type": "number" },
+            { "selector": "timestamp", "text": "Timestamp", "type": "string" }
+          ]
+        }
+      ],
+      "options": {
+        "showHeader": true
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 2,
+      "type": "table",
+      "title": "Latest Summary",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "summaryds"
+      },
+      "targets": [
+        {
+          "refId": "B",
+          "type": "json",
+          "url": "/api/summary",
+          "data": "",
+          "format": "table",
+          "columns": [
+            { "selector": "max_temp", "text": "Max Temp", "type": "number" },
+            { "selector": "max_sensor_id", "text": "Max Sensor", "type": "string" },
+            { "selector": "min_temp", "text": "Min Temp", "type": "number" },
+            { "selector": "min_sensor_id", "text": "Min Sensor", "type": "string" },
+            { "selector": "avg_temp", "text": "Avg Temp", "type": "number" },
+            { "selector": "timestamp", "text": "Timestamp", "type": "string" }
+          ]
+        }
+      ],
+      "options": {
+        "showHeader": true
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      }
+    }
+  ],
+  "links": []
+}

@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+name: cosmos-changefeed-demo
+description: Demo App for Cosmos DB Change Feed
+metadata:
+  # Update the template version.  Bump the version whenever the infrastructure or
+  # container configuration changes.  This ensures azd picks up the latest
+  # template.  Version 0.0.28 reverts the visualizer service to a simple
+  # Flask and matplotlib implementation and removes the Grafana dependency.
+  template: cosmos-cf-demo@0.0.22
+requiredVersions:
+  azd: ">= 1.14.0"
+
+workflows:
+  up:
+    steps:
+      - azd: provision
+      - azd: deploy
+
+infra:
+  bicep: ./infra/main.bicep
+
+services:
+  summariser:
+    project: ./summariser
+    language: py
+    module: summariser
+    host: containerapp
+    docker:
+      context: ./
+      registry: ${AZURE_CONTAINER_REGISTRY_ENDPOINT}
+      path: ./Dockerfile
+      remoteBuild: true
+    env:
+      COSMOSDB_ENDPOINT: ${COSMOSDB_ENDPOINT}
+      DATABASE_NAME: ${COSMOS_DATABASE_NAME}
+      READINGS_CONTAINER: ${COSMOS_READINGS_CONTAINER}
+      SUMMARIES_CONTAINER: ${COSMOS_SUMMARIES_CONTAINER}
+      LEASES_CONTAINER: ${COSMOS_LEASES_CONTAINER}
+      BATCH_INTERVAL_SECONDS: "1"
+      AZURE_CLIENT_ID: ${SUMMARISER_CLIENT_ID}
+  generator:
+    project: ./generator
+    language: py
+    module: generator
+    host: containerapp
+    docker:
+      context: ./
+      registry: ${AZURE_CONTAINER_REGISTRY_ENDPOINT}
+      path: ./Dockerfile
+      remoteBuild: true
+    env:
+      COSMOSDB_ENDPOINT: ${COSMOSDB_ENDPOINT}
+      DATABASE_NAME: ${COSMOS_DATABASE_NAME}
+      READINGS_CONTAINER: ${COSMOS_READINGS_CONTAINER}
+      AZURE_CLIENT_ID: ${GENERATOR_CLIENT_ID}
+
+  # Visualizer service definition
+  visualizer:
+    # The visualizer service is a Python Flask application that reads
+    # summarised sensor data from the Cosmos DB 'summaries' container and
+    # renders a plot in a simple web page.  The container app exposes
+    # an HTTP endpoint so the graph can be viewed in a browser.
+    project: ./visualizer
+    language: py
+    module: visualizer
+    host: containerapp
+    docker:
+      # Use the Dockerfile in the visualizer directory to build the image.
+      context: ./
+      registry: ${AZURE_CONTAINER_REGISTRY_ENDPOINT}
+      path: ./Dockerfile
+      remoteBuild: true
+    env:
+      COSMOSDB_ENDPOINT: ${COSMOSDB_ENDPOINT}
+      DATABASE_NAME: ${COSMOS_DATABASE_NAME}
+      SUMMARIES_CONTAINER: ${COSMOS_SUMMARIES_CONTAINER}
+      # Client ID of the user-assigned identity attached to the visualizer container app.
+      AZURE_CLIENT_ID: ${VISUALIZER_CLIENT_ID}
+      # Interval (in seconds) at which the browser refreshes the graph page.  This
+      # corresponds to the POLL_SECONDS variable in the visualizer application.
+      POLL_SECONDS: "10"
+      # Number of recent summary points to display in the graph.  This corresponds
+      # to the POINTS variable in the visualizer application.
+      POINTS: "120"
+      # Port on which the Flask application listens.  Must match the targetPort
+      # specified in the Bicep template for the visualizer container app.
+      PORT: "8080"
+

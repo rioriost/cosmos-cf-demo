@@ -1,0 +1,23 @@
+apiVersion: 1
+datasources:
+  - name: RawDataSource
+    uid: rawds
+    type: yesoreyeram-infinity-datasource
+    access: proxy
+    # The base URL for API requests.  The VISUALIZER_BASE_URL environment
+    # variable should be provided via the container app definition.  If the
+    # environment variable is not set, the Infinity plugin will use this as
+    # the base URL for relative paths.  Each query in the dashboard appends
+    # a relative path to this URL.
+    url: ${VISUALIZER_BASE_URL}
+    jsonData:
+      httpMode: GET
+    editable: false
+  - name: SummaryDataSource
+    uid: summaryds
+    type: yesoreyeram-infinity-datasource
+    access: proxy
+    url: ${VISUALIZER_BASE_URL}
+    jsonData:
+      httpMode: GET
+    editable: false

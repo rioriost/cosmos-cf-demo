@@ -1,0 +1,4 @@
+flask
+azure-cosmos
+azure-identity
+matplotlib
