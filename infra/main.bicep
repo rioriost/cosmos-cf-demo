@@ -616,7 +616,6 @@ resource visualizerRoleAssignment 'Microsoft.DocumentDB/databaseAccounts/sqlRole
 output COSMOSDB_ENDPOINT string = cosmosAccount.properties.documentEndpoint
 
 @description('Cosmos DB primary key')
-@secure()
 output COSMOSDB_KEY string = cosmosPrimaryKey
 
 @description('Cosmos DB database name used by the demo')
