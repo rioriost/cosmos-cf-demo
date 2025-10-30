@@ -6,13 +6,18 @@ This repository contains a small demonstration of how to build a real‑time dat
 The demo simulates five IoT sensors that generate temperature readings at random intervals.
 A summariser application consumes the Change Feed to compute per‑sensor statistics, and a visualiser displays the aggregated results in near real‑time.
 
+<div align="center">
+  <img src="docs/assets/screenshot.png" alt="screenshot" width="600" />
+  <p><em>Figure 1 – Screenshot of the demo</em></p>
+</div>
+
 The Change Feed exposes an **append‑only stream of changes** made to a Cosmos DB container.
 It allows applications to react to inserts, updates and deletions without polling the entire dataset.
 This pattern is ideal for IoT, gaming and real‑time analytics scenarios where events need to be processed as they occur.
 
 <div align="center">
   <img src="docs/assets/change_feed_overview.png" alt="Change feed architecture diagram" width="600" />
-  <p><em>Figure 1 – Azure Cosmos DB Change Feed enables efficient, scalable, event‑driven architectures.</em></p>
+  <p><em>Figure 2 – Azure Cosmos DB Change Feed enables efficient, scalable, event‑driven architectures.</em></p>
 </div>
 
 ## Quick Start

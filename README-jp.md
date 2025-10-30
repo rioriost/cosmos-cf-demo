@@ -6,12 +6,17 @@
 デモでは5つのIoTセンサーを想定し、それぞれランダムな間隔で温度データを生成します。
 Change Feedを購読するサマライザーが最新のデータから統計量を計算し、ビジュアライザーが集約結果をグラフとして表示します。
 
+<div align="center">
+  <img src="docs/assets/screenshot.png" alt="アプリ画面" width="600" />
+  <p><em>図1 – アプリ画面のスクリーンショット</em></p>
+</div>
+
 Change FeedはCosmos DBコンテナへの変更を **追記されたデータ専用のストリーム** として公開し、全件検索することなく新しい書き込みや更新を検出できます。
 IoT・ゲーム・リアルタイム分析など、イベント駆動型アーキテクチャに適したパターンです。
 
 <div align="center">
   <img src="docs/assets/change_feed_overview.png" alt="Change Feedのアーキテクチャ図" width="600" />
-  <p><em>図1 – Change Feedによってイベント駆動型アプリケーションを効率的かつスケーラブルに構築できます。</em></p>
+  <p><em>図2 – Change Feedによってイベント駆動型アプリケーションを効率的かつスケーラブルに構築できます。</em></p>
 </div>
 
 ## クイックスタート
