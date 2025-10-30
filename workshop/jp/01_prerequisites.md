@@ -82,7 +82,7 @@ Azure ポータルの *Subscription* → *Usage + quotas* から確認し、必�
  docker --version
 ```
 
-本ラボでは **Azure CLI 2.61 以降**、**Azure Developer CLI 1.5 以降**、**Git 2.30 以降**、**Python 3.10 以降** を使用して検証しています。
+本ラボでは **Azure CLI 2.77 以降**、**Azure Developer CLI 1.17 以降**、**Git 2.45.4 以降**、**Python 3.12.9 以降** を使用して検証しています。
 これより古いバージョンの場合、一部機能が使えないことがありますので事前にアップデートしておきましょう。
 
 ### 作業環境の選択

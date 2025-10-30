@@ -64,8 +64,8 @@ python3 --version
 docker --version
 ```
 
-At the time of writing this lab we tested with **Azure CLI 2.61+**, **Azure
-Developer CLI 1.5+**, **Git 2.30+** and **Python 3.10+**.  Newer versions
+At the time of writing this lab we tested with **Azure CLI 2.77+**, **Azure
+Developer CLI 1.17+**, **Git 2.45.4+** and **Python 3.12.9+**.  Newer versions
 should work fine but older releases may lack features or bug fixes.  If
 you encounter unexpected errors during deployment, upgrading the
 toolchain is often the first troubleshooting step.
