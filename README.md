@@ -22,7 +22,7 @@ This pattern is ideal for IoT, gaming and real‑time analytics scenarios where 
 
 <div align="center">
   <img src="docs/assets/flow.png" alt="Data flow" width="600" />
-  <p><em>Figure 3 – Architechture diagram of this demo.</em></p>
+  <p><em>Figure 3 – Architecture diagram of this demo.</em></p>
 </div>
 
 ## Quick Start
