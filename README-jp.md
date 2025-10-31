@@ -19,6 +19,11 @@ IoT・ゲーム・リアルタイム分析など、イベント駆動型アー�
   <p><em>図2 – Change Feedによってイベント駆動型アプリケーションを効率的かつスケーラブルに構築できます。</em></p>
 </div>
 
+<div align="center">
+  <img src="docs/assets/flow.png" alt="データフロー" width="600" />
+  <p><em>図3 – 本デモのデータフロー</em></p>
+</div>
+
 ## クイックスタート
 
 ### 前提条件
